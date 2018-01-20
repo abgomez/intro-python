@@ -1,10 +1,10 @@
-The program wordCount.py takes an input file and identifies the number of times each time occurs within the file
+The program wordCount.py takes an input file and identifies the number of times each word occurs within the file
 it uses regular expressions to search and identify all words. The search and count are case-insensitive. 
 
 The program uses two dictionaries which stores the key and value of each world, one dictionary serves as a middle man
-between the input file and the end result. The second dictionary is used to save only unique words and to sort results. 
+between the input file and the end result. The second dictionary is used to save only unique words and sorted results. 
 
-The program generates an output file where each word with it number of ocurrences are saved. If the output file does not 
+The program generates an output file with each word and its number of ocurrences. If the output file does not 
 exists it will be created.
 
 To run wordCount.py you need to run the following command: python wordCount.py <inputFile> <outputFile>
