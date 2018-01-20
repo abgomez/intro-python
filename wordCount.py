@@ -6,35 +6,42 @@
 
 import sys
 import re
+import os
 
 #check number of arguments if less than 3 exit program
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
 	print 'Incorrect number of arguments'
 	print 'Correct use wordCount.py <inputFile> <outputFile>'
-	quit()
+	exit()
+
 
 #declare variables
 inFileName = sys.argv[1]
-regex = '\w+'
+outFileName = sys.argv[2]
 unWordList = {}
 soWordList = {}
 
+#check input file exists
+if not os.path.exists(inFileName):
+	print 'Input File does not exists: %s' % inFileName
+	exit()
+
 #open input file and count words.
-print ('Openning File: %s' % inFileName)
+print ('Openning File: %s - counting words.....' % inFileName)
 inFile = open(inFileName, 'r')
 text = inFile.read()
 #use regex to get all words
 unWordList = re.findall(r'\w+', text, flags=re.I) 
 for word in unWordList:
 	word = word.lower()
-	#check if the word exists in the output dic, if exists increment count 1 if not add it
+	#check if the word exists in the output dic, if exists increment count 1 if not, add it
 	if word in soWordList.keys():
 		soWordList[word] += 1
 	else:
 		soWordList[word] = 1
 	
 #sort dic. and write to output file.
+outFile = open(outFileName, 'w+')
 for word in sorted(soWordList):
-	print '%s %s' % (word, soWordList[word]) 
-
-
+	outFile.write('%s %s \n' % (word, soWordList[word]) )
+print 'Output File Created: %s' % outFileName
